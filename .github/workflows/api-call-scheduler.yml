@@ -2,8 +2,8 @@ name: API Suspend Call
 
 on:
   schedule:
-    - cron: '08 20 * * *'  # This still schedules it to run daily at 9 AM UTC
-  workflow_dispatch:  # This enables manual triggers
+    - cron: '15 20 * * *'  # This still schedules it to run daily at 9 AM UTC
+  #workflow_dispatch:  # This enables manual triggers
 
 jobs:
   api_call:
