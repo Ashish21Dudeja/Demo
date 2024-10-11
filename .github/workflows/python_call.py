@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 
 # Load the Excel file
-df = pd.read_excel('test.xlsx')
+df = pd.read_excel('.github/workflows/test.xlsx')
 
 # Define the base URL and the headers
 base_url = "https://fwprepaid.myfastway.in/api/index.php/v1/account/{accNo}/suspend"
