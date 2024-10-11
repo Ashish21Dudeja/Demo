@@ -25,4 +25,4 @@ jobs:
 
     - name: Run API suspension script
       run: |
-        python your_script.py  # Replace with the actual name of your Python script
+        python python_call.py  # Replace with the actual name of your Python script
