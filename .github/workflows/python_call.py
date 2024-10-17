@@ -25,7 +25,8 @@ for index, row in df.iterrows():
     response = requests.post(url, json=body, headers=headers)
 
     # Handle the response
-    if response.status_code == 200:
-        print(f"Successfully suspended account {acc_no}")
+    if response.status_code == 201:
+        print(f"Successfully suspended account {acc_no}: {response.status_code}, {response.text}")
+        # print(f"Successfully suspended account {acc_no}")
     else:
         print(f"Failed to suspend account {acc_no}: {response.status_code}, {response.text}")
