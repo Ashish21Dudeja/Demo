@@ -58,19 +58,25 @@ for index, row in df.iterrows():
     else:
         print(f"Failed to suspend account {acc_no}: {response_suspend.status_code}, {response_suspend.text}")
 
-# Step 2: Wait for 3 minutes before resuming accounts
-print("Waiting for 3 minutes before resuming accounts...")
-time.sleep(180)  # Sleep for 3 minutes (180 seconds)
+# Step 2: Wait until the date changes to the next day
+print("Waiting for the date to change to the next day...")
+while True:
+    # Get the current date and compare it with the initial date
+    current_time = datetime.now(IST)
+    initial_date = current_time.date()
 
-# Step 3: Check if the current time is after 12:00 PM IST
-current_time = datetime.now(IST)
-noon_time = current_time.replace(hour=12, minute=0, second=0, microsecond=0)
+    # Calculate the next day
+    next_day = initial_date + timedelta(days=1)
 
-if current_time < noon_time:
-    print(f"Current time is {current_time.strftime('%H:%M %p IST')}, which is before 12:00 PM IST. Stopping resumption.")
-    sys.exit(0)
+    # Wait for 1 minute and check if the date has changed
+    if datetime.now(IST).date() >= next_day:
+        print(f"Date has changed to {datetime.now(IST).date()}. Proceeding with account resumption.")
+        break
+    else:
+        print(f"Current date is {initial_date}. Waiting for 1 minute...")
+        time.sleep(60)  # Wait for 1 minute before checking again
 
-# Step 4: Resume the suspended accounts after 12:00 PM IST
+# Step 3: Resume the suspended accounts
 for acc_no in suspended_accounts:
     resume_url_formatted = resume_url.format(accNo=acc_no)
     response_resume = requests.post(resume_url_formatted, json=resume_body, headers=headers)
