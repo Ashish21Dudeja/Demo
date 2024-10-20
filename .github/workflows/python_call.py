@@ -1,6 +1,28 @@
 import pandas as pd
 import requests
 
+from datetime import datetime
+import pytz
+import sys
+import requests
+import pandas as pd
+
+# Define IST timezone
+IST = pytz.timezone('Asia/Kolkata')
+
+# Get current time in IST
+current_time = datetime.now(IST)
+
+# Define 11:59 PM in IST for today
+end_of_day = current_time.replace(hour=23, minute=59, second=0, microsecond=0)
+
+# Check if current time is before 11:59 PM
+if current_time >= end_of_day:
+    print("The time is past 11:59 PM IST. Stopping execution.")
+    sys.exit(0)  # Stop the script
+else:
+    print(f"Current time is {current_time.strftime('%H:%M %p IST')}. Proceeding with execution.")
+    
 # Load the Excel file
 df = pd.read_excel('.github/workflows/test.xlsx')
 
