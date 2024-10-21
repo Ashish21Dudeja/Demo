@@ -15,9 +15,21 @@ current_time = datetime.now(IST)
 start_deactivation_time = current_time.replace(hour=23, minute=56, second=0, microsecond=0)
 end_deactivation_time = current_time.replace(hour=23, minute=59, second=59, microsecond=999999)
 
-# Check if the current time is within the allowed time window for deactivation
-if current_time < start_deactivation_time or current_time > end_deactivation_time:
-    print(f"Current time is {current_time.strftime('%H:%M %p IST')}. Outside the 11:56 PM - 12:00 AM window. Stopping execution.")
+# If current time is before 11:56 PM, wait until 11:56 PM
+if current_time < start_deactivation_time:
+    # Calculate the remaining time in seconds until 11:56 PM
+    remaining_time = (start_deactivation_time - current_time).total_seconds()
+    print(f"Current time is {current_time.strftime('%H:%M %p IST')}. Waiting {int(remaining_time // 60)} minutes and {int(remaining_time % 60)} seconds until 11:56 PM.")
+    
+    # Sleep for the remaining time
+    time.sleep(remaining_time)
+
+    # Update current time after waiting
+    current_time = datetime.now(IST)
+
+# Check if the current time is now within the allowed time window for deactivation
+if current_time > end_deactivation_time:
+    print(f"Current time is {current_time.strftime('%H:%M %p IST')}. It's past 12:00 AM, stopping execution.")
     sys.exit(0)  # Stop the script
 else:
     print(f"Current time is {current_time.strftime('%H:%M %p IST')}. Proceeding with deactivation.")
