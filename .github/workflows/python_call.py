@@ -71,26 +71,24 @@ for index, row in df.iterrows():
     else:
         print(f"Failed to suspend account {acc_no}: {response_suspend.status_code}, {response_suspend.text}")
 
-# Step 2: Wait for 5 minutes after deactivation
-print("Waiting for 5 minutes before resuming accounts...")
-time.sleep(300)  # 5 minutes delay (300 seconds)
+# Step 2: Wait for 3 minutes after deactivation
+print("Waiting for 3 minutes before checking if the date has changed...")
+time.sleep(180)  # 3 minutes delay (180 seconds)
 
 # Step 3: Check if the date has changed to the next day before resuming accounts
-print("Waiting for the date to change to the next day...")
+print("Checking if the date has changed to the next day...")
 while True:
-    # Get the current date and compare it with the initial date
-    current_time = datetime.now(IST)
-    initial_date = current_time.date()
-
+    # Get the current date
+    current_date = datetime.now(IST).date()
     # Calculate the next day
-    next_day = initial_date + timedelta(days=1)
+    next_day = current_date + timedelta(days=1)
 
     # Wait for 1 minute and check if the date has changed
     if datetime.now(IST).date() >= next_day:
         print(f"Date has changed to {datetime.now(IST).date()}. Proceeding with account resumption.")
         break
     else:
-        print(f"Current date is {initial_date}. Waiting for 1 minute before checking again...")
+        print(f"Current date is still {current_date}. Waiting for 1 minute before checking again...")
         time.sleep(60)  # Wait for 1 minute before checking again
 
 # Step 4: Resume the suspended accounts after the date changes
