@@ -86,12 +86,12 @@ while True:
     next_day = initial_date + timedelta(days=1)
 
     # Wait for 1 minute and check if the date has changed
-    # if datetime.now(IST).date() >= next_day:
+    if datetime.now(IST).date() >= next_day:
         print(f"Date has changed to {datetime.now(IST).date()}. Proceeding with account resumption.")
-        # break
-    # else:
-        # print(f"Current date is {initial_date}. Waiting for 1 minute before checking again...")
-        # time.sleep(60)  # Wait for 1 minute before checking again
+        break
+    else:
+        print(f"Current date is {initial_date}. Waiting for 1 minute before checking again...")
+        time.sleep(60)  # Wait for 1 minute before checking again
 
 # Step 4: Resume the suspended accounts after the date changes
 for acc_no in suspended_accounts:
