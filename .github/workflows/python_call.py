@@ -79,9 +79,9 @@ time.sleep(180)  # 3 minutes delay (180 seconds)
 print("Checking if the date has changed to the next day...")
 while True:
     # Get the current date
-    current_date = datetime.now(IST).date()
+    # current_date = datetime.now(IST).date()
     # Calculate the next day
-    next_day = current_date + timedelta(days=1)
+    next_day = current_time  + timedelta(days=1)
 
     # Wait for 1 minute and check if the date has changed
     if datetime.now(IST).date() >= next_day:
