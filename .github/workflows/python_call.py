@@ -11,13 +11,13 @@ IST = pytz.timezone('Asia/Kolkata')
 # Get current time in IST
 current_time = datetime.now(IST)
 
-# Define the time window for deactivation (11:56 PM to 12:00 AM)
-start_deactivation_time = current_time.replace(hour=23, minute=56, second=0, microsecond=0)
+# Define the time window for deactivation (11:57 PM to 12:00 AM)
+start_deactivation_time = current_time.replace(hour=23, minute=57, second=0, microsecond=0)
 end_deactivation_time = current_time.replace(hour=23, minute=59, second=59, microsecond=999999)
 
-# If current time is before 11:56 PM, wait until 11:56 PM
+# If current time is before 11:56 PM, wait until 11:57 PM
 if current_time < start_deactivation_time:
-    # Calculate the remaining time in seconds until 11:56 PM
+    # Calculate the remaining time in seconds until 11:57 PM
     remaining_time = (start_deactivation_time - current_time).total_seconds()
     print(f"Current time is {current_time.strftime('%H:%M %p IST')}. Waiting {int(remaining_time // 60)} minutes and {int(remaining_time % 60)} seconds until 11:56 PM.")
     
