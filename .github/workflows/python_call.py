@@ -73,7 +73,7 @@ for index, row in df.iterrows():
 
 # Step 2: Wait for 5 minutes after deactivation
 print("Waiting for 5 minutes before checking if the date has changed...")
-time.sleep(300)  # 5 minutes delay (300 seconds)
+time.sleep(100)  # 5 minutes delay (300 seconds)
 
 # Step 3: Check if the date has changed to the next day before resuming accounts
 # print("Checking if the date has changed to the next day...")
