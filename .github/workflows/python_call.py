@@ -52,6 +52,7 @@ def get_access_token(username, password):
 access_token = get_access_token(USERNAME, PASSWORD)
 HEADERS = {
     "Authorization": f"Bearer {access_token}"
+    print("Authorization:" f"Bearer {access_token}")
 }
 
 # Load the Excel file
