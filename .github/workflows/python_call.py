@@ -62,7 +62,7 @@ df = pd.read_excel('.github/workflows/test.xlsx')
 current_time = datetime.now(IST)
 
 # Define the time window for deactivation (11:58 PM to 12:00 AM)
-start_deactivation_time = current_time.replace(hour=23, minute=58, second=0, microsecond=0)
+start_deactivation_time = current_time.replace(hour=23, minute=57, second=0, microsecond=0)
 end_deactivation_time = current_time.replace(hour=23, minute=59, second=59, microsecond=999999)
 
 # Wait until 11:58 PM if needed
