@@ -97,9 +97,9 @@ with ThreadPoolExecutor(max_workers=10) as executor:
     results = executor.map(suspend_account, df['accNo'])
     suspended_accounts = [acc for acc in results if acc is not None]
 
-# Wait for 2 minutes
-print("Waiting for 2 minutes before resuming accounts...")
-time.sleep(120)
+# Wait for 3 minutes
+print("Waiting for 3 minutes before resuming accounts...")
+time.sleep(180)
 
 # Resume function
 def resume_account(acc_no):
