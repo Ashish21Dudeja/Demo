@@ -78,22 +78,18 @@ end_deactivation_time = current_time.replace(hour=23, minute=59, second=59, micr
 #     print("Proceeding with deactivation...")
 
 # Function to suspend an account
-# def suspend_account(acc_no):
-#     url = SUSPEND_URL.format(accNo=acc_no)
-#     try:
-#         response = requests.post(url, json=SUSPEND_BODY, headers=HEADERS)
-#         if response.status_code == 201:
-#             print(f"Suspended account {acc_no}")
-#             return acc_no
-#         else:
-#             print(f"Failed to suspend {acc_no}: {response.status_code}, {response.text}")
-#     except Exception as e:
-#         print(f"Error suspending {acc_no}: {e}")
-#     return None
-
-url = SUSPEND_URL.format(accNo=acc_no)
- print(f"Suspended account {acc_no}")
- print(f"Suspended account URL {url}")
+def suspend_account(acc_no):
+    url = SUSPEND_URL.format(accNo=acc_no)
+    try:
+        response = requests.post(url, json=SUSPEND_BODY, headers=HEADERS)
+        if response.status_code == 201:
+            print(f"Suspended account {acc_no}")
+            return acc_no
+        else:
+            print(f"Failed to suspend {acc_no}: {response.status_code}, {response.text}")
+    except Exception as e:
+        print(f"Error suspending {acc_no}: {e}")
+    return None
 
 # Suspend accounts concurrently
 suspended_accounts = []
