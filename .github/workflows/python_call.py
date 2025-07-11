@@ -66,30 +66,34 @@ start_deactivation_time = current_time.replace(hour=23, minute=57, second=0, mic
 end_deactivation_time = current_time.replace(hour=23, minute=59, second=59, microsecond=999999)
 
 # Wait until 11:58 PM if needed
-if current_time < start_deactivation_time:
-    remaining_time = (start_deactivation_time - current_time).total_seconds()
-    print(f"Waiting {int(remaining_time // 60)} min and {int(remaining_time % 60)} sec until 11:58 PM.")
-    time.sleep(remaining_time)
+# if current_time < start_deactivation_time:
+#     remaining_time = (start_deactivation_time - current_time).total_seconds()
+#     print(f"Waiting {int(remaining_time // 60)} min and {int(remaining_time % 60)} sec until 11:58 PM.")
+#     time.sleep(remaining_time)
 
-if datetime.now(IST) > end_deactivation_time:
-    print("It's past 12:00 AM, stopping execution.")
-    sys.exit(0)
-else:
-    print("Proceeding with deactivation...")
+# if datetime.now(IST) > end_deactivation_time:
+#     print("It's past 12:00 AM, stopping execution.")
+#     sys.exit(0)
+# else:
+#     print("Proceeding with deactivation...")
 
 # Function to suspend an account
-def suspend_account(acc_no):
-    url = SUSPEND_URL.format(accNo=acc_no)
-    try:
-        response = requests.post(url, json=SUSPEND_BODY, headers=HEADERS)
-        if response.status_code == 201:
-            print(f"Suspended account {acc_no}")
-            return acc_no
-        else:
-            print(f"Failed to suspend {acc_no}: {response.status_code}, {response.text}")
-    except Exception as e:
-        print(f"Error suspending {acc_no}: {e}")
-    return None
+# def suspend_account(acc_no):
+#     url = SUSPEND_URL.format(accNo=acc_no)
+#     try:
+#         response = requests.post(url, json=SUSPEND_BODY, headers=HEADERS)
+#         if response.status_code == 201:
+#             print(f"Suspended account {acc_no}")
+#             return acc_no
+#         else:
+#             print(f"Failed to suspend {acc_no}: {response.status_code}, {response.text}")
+#     except Exception as e:
+#         print(f"Error suspending {acc_no}: {e}")
+#     return None
+
+url = SUSPEND_URL.format(accNo=acc_no)
+ print(f"Suspended account {acc_no}")
+ print(f"Suspended account URL {url}")
 
 # Suspend accounts concurrently
 suspended_accounts = []
