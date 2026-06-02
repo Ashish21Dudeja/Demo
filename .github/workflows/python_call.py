@@ -16,7 +16,7 @@ RESUME_URL = "https://fwprepaid.myfastway.in/api/index.php/v1/account/{accNo}/re
 
 # User credentials
 USERNAME = "IN-0000016345"
-PASSWORD = "AshishDudeja@123"
+PASSWORD = "AshishDudeja@1234"
 
 # Request bodies
 SUSPEND_BODY = {
